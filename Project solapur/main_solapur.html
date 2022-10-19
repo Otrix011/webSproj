@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solapur Munciple Corporation</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <!-- custom css file link  -->
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+
+    <!-- gsap animation library link  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+  </head>
+
+  <style>
+    :root {
+      /**
+ * colors
+ */
+
+      --rich-black-fogra-29-1: hsl(215, 31%, 14%);
+      --rich-black-fogra-29-2: hsl(230, 14%, 8%);
+      --rich-black-fogra-39: hsl(158, 29%, 5%);
+      --granite-gray: hsl(0, 0%, 40%);
+      --go-green_50: hsla(145, 63%, 42%, 0.5);
+      --go-green_8: hsla(145, 63%, 42%, 0.08);
+      --go-green_5: hsla(145, 63%, 42%, 0.05);
+      --light-gray: hsl(0, 0%, 80%);
+      --mint-cream: hsl(160, 100%, 98%);
+      --cultured: hsl(0, 0%, 93%);
+      --go-green: #85c1ee;
+      --white: hsl(0, 0%, 100%);
+      --jet: hsl(0, 0%, 18%);
+
+      /**
+ * typography
+ */
+
+      --ff-poppins: "Poppins", sans-serif;
+      --ff-cuprum: "Cuprum", sans-serif;
+
+      --fs-1: 4.5rem;
+      --fs-2: 3.6rem;
+      --fs-3: 3.5rem;
+      --fs-4: 3.2rem;
+      --fs-5: 2.5rem;
+      --fs-6: 2.4rem;
+      --fs-7: 2.2rem;
+      --fs-8: 2rem;
+      --fs-9: 1.8rem;
+      --fs-10: 1.5rem;
+      --fs-11: 1.4rem;
+      --fs-12: 1.3rem;
+
+      --fw-600: 600;
+      --fw-500: 500;
+
+      /**
+ * spacing
+ */
+
+      --section-padding: 80px;
+
+      /**
+ * shadow
+ */
+
+      --shadow-1: 3px 4px 30px hsla(0, 0%, 53%, 0.1);
+      --shadow-2: 5px 3px 40px hsla(191, 100%, 17%, 0.1);
+
+      /**
+ * radius
+ */
+
+      --radius-5: 5px;
+
+      /**
+ * transition
+ */
+
+      --transition-1: 0.25s ease;
+      --transition-2: 0.5s ease;
+      --cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);
+    }
+
+    /*-----------------------------------*\
+#RESET
+\*-----------------------------------*/
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a,
+    img,
+    span,
+    input,
+    button,
+    ion-icon {
+      display: block;
+    }
+
+    img {
+      height: auto;
+    }
+
+    input,
+    button {
+      background: none;
+      border: none;
+      font: inherit;
+    }
+    ion-icon {
+      pointer-events: none;
+    }
+
+    html {
+      font-family: var(--ff-poppins);
+      font-size: 10px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--white);
+      color: var(--granite-gray);
+      font-size: 1.6rem;
+      line-height: 1.7;
+    }
+
+    :focus-visible {
+      outline-offset: 4px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: hsl(0, 0%, 98%);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: hsl(0, 0%, 80%);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: hsl(0, 0%, 70%);
+    }
+
+    /*-----------------------------------*\
+#REUSED STYLE
+\*-----------------------------------*/
+
+    .container {
+      padding-inline: 15px;
+    }
+
+    .section {
+      padding-block: var(--section-padding);
+    }
+
+    .has-before,
+    .has-after {
+      position: relative;
+      z-index: 1;
+    }
+
+    .has-before::before,
+    .has-after::after {
+      content: "";
+      position: absolute;
+    }
+
+    .h1,
+    .h2,
+    .h3,
+    .h2-sm {
+      color: var(--rich-black-fogra-29-1);
+      font-family: var(--ff-cuprum);
+    }
+
+    .h1 {
+      font-size: var(--fs-1);
+      line-height: 1.1;
+    }
+
+    .h2 {
+      font-size: var(--fs-2);
+    }
+
+    .h2,
+    .h3,
+    .h2-sm {
+      line-height: 1.3;
+    }
+
+    .h2-sm {
+      font-size: var(--fs-3);
+    }
+
+    .h3 {
+      font-size: var(--fs-7);
+    }
+
+    .w-100 {
+      width: 100%;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .section-subtitle {
+      color: var(--go-green);
+      font-weight: var(--fw-500);
+    }
+
+    .grid-list {
+      display: grid;
+      gap: 20px;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 var(--go-green);
+      }
+      100% {
+        box-shadow: 0 0 0 20px transparent;
+      }
+    }
+
+    /*-----------------------------------*\
+#FEATURES
+\*-----------------------------------*/
+
+    .features .section-text {
+      margin-block: 15px 50px;
+    }
+    .features .grid-list {
+      margin-top: 3rem;
+    }
+
+    .features-card {
+      position: relative;
+      background-color: var(--white);
+      padding: 25px;
+      padding-block-start: 40px;
+      margin-block-start: 24px;
+      box-shadow: var(--shadow-1);
+      transition: var(--transition-2);
+    }
+
+    .features-card:hover {
+      background-color: var(--go-green);
+    }
+
+    .features-card .card-number {
+      position: absolute;
+      top: 0;
+      left: 25px;
+      transform: translateY(-50%);
+      background-color: var(--cultured);
+      font-size: var(--fs-7);
+      font-weight: var(--fw-600);
+      padding-block: 5px;
+      min-width: 50px;
+      text-align: center;
+      border-radius: var(--radius-5);
+      transition: var(--transition-1);
+    }
+
+    .features-card:hover .card-number {
+      color: var(--go-green);
+    }
+
+    .features-card .card-title {
+      font-size: var(--fs-6);
+      margin-block-end: 5px;
+    }
+
+    .features-card :is(.card-title, .card-text) {
+      transition: var(--transition-1);
+    }
+
+    .features-card:hover :is(.card-title, .card-text) {
+      color: var(--white);
+    }
+
+    /*-----------------------------------*\
+#MEDIA QUERIES 
+\*-----------------------------------*/
+
+    /**
+* responsive for large than 575px screen
+*/
+
+    @media (min-width: 575px) {
+      :root {
+        --fs-1: 5.4rem;
+      }
+      .container {
+        max-width: 540px;
+        width: 100%;
+        margin-inline: auto;
+      }
+    }
+
+    /**
+* responsive for large than 768px screen
+*/
+
+    @media (min-width: 768px) {
+      :root {
+        /**
+   * typography
+   */
+
+        --fs-1: 7rem;
+        --fs-2: 4rem;
+        --fs-4: 3.5rem;
+      }
+
+      /**
+ * REUSED STYLE
+ */
+
+      .container {
+        max-width: 720px;
+      }
+      .section-text.text-center {
+        max-width: 50ch;
+        margin-inline: auto;
+      }
+
+      /**
+ * FEATURES
+ */
+
+      .features .grid-list {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /**
+* responsive for large than 992px screen
+*/
+
+    @media (min-width: 992px) {
+      .container {
+        max-width: 960px;
+      }
+
+      /**
+ * FEATURES
+ */
+
+      .features .grid-list {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /**
+* responsive for large than 1200px screen
+*/
+
+    @media (min-width: 1200px) {
+      /**
+ * CUSTOM PROPERTY
+ */
+
+      :root {
+        /**
+   * typography
+   */
+
+        --fs-1: 7.5rem;
+        --fs-4: 3.8rem;
+      }
+
+      /**
+ * REUSED STYLE
+ */
+
+      .container {
+        max-width: 1140px;
+      }
+    }
+
+    :root {
+      background: #222;
+    }
+
+    * {
+      font-family: "Nunito", sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-transform: capitalize;
+      outline: none;
+      border: none;
+      text-decoration: none;
+      transition: all 0.2s linear;
+      margin: 0;
+      padding: 0;
+    }
+
+    *::selection {
+      background: #85c1ee;
+      color: #fff;
+    }
+
+    html {
+      font-size: 62.5%;
+      overflow-x: hidden;
+      scroll-padding-top: 6rem;
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: #ecf4fb;
+    }
+
+    section {
+      padding: 2rem 9%;
+    }
+
+    .heading {
+      text-align: center;
+      padding: 2.5rem 0;
+    }
+
+    .heading span {
+      font-size: 3.5rem;
+      background: rgba(255, 165, 0, 0.2);
+      color: #85c1ee;
+      border-radius: 0.5rem;
+      padding: 0.2rem 1rem;
+    }
+
+    .heading span.space {
+      background: none;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      background: #85c1ee;
+      color: #fff;
+      padding: 0.8rem 3rem;
+      border: 0.2rem solid #85c1ee;
+      cursor: pointer;
+      font-size: 1.7rem;
+    }
+
+    .btn:hover {
+      background: rgba(255, 165, 0, 0.2);
+      color: var(--orange);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 9%;
+      background: #fff;
+      height: 8rem;
+      opacity: 0.8;
+    }
+
+    header .logo {
+      font-size: 2.5rem;
+      font-weight: bolder;
+      color: #222;
+      opacity: 1;
+      text-transform: uppercase;
+    }
+
+    header .logo span {
+      color: var(--orange);
+    }
+    header .navbar {
+      display: flex;
+    }
+    header .navbar a {
+      color: #222;
+      font-size: 2rem;
+      margin: 0 0.8rem;
+    }
+
+    header .navbar a:hover {
+      color: var(--orange);
+    }
+
+    header .icons i {
+      font-size: 2.5rem;
+      color: #222;
+      cursor: pointer;
+      margin-right: 2rem;
+    }
+
+    header .icons i:hover {
+      color: var(--orange);
+    }
+
+    header .search-bar-container {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      padding: 1.5rem 2rem;
+      background: #333;
+      border-top: 0.1rem solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      z-index: 1001;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    header .search-bar-container.active {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    header .search-bar-container #search-bar {
+      width: 100%;
+      padding: 1rem;
+      text-transform: none;
+      color: #333;
+      font-size: 1.7rem;
+      border-radius: 0.5rem;
+    }
+
+    header .search-bar-container label {
+      color: #fff;
+      cursor: pointer;
+      font-size: 3rem;
+      margin-left: 1.5rem;
+    }
+
+    header .search-bar-container label:hover {
+      color: var(--orange);
+    }
+
+    #menu-bar {
+      color: #fff;
+      border: 0.1rem solid #fff;
+      border-radius: 0.5rem;
+      font-size: 3rem;
+      padding: 0.5rem 1.2rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    .home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: column;
+      position: relative;
+      z-index: 0;
+    }
+
+    .home .content {
+      text-align: center;
+    }
+
+    .home .content h3 {
+      font-size: 4.5rem;
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.1);
+    }
+
+    .home .content p {
+      font-size: 2.5rem;
+      color: #222;
+      padding: 0.5rem 0;
+    }
+
+    .home .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .home .controls {
+      padding: 1rem;
+      border-radius: 5rem;
+      background: rgba(0, 0, 0, 0.7);
+      position: relative;
+      top: 10rem;
+    }
+
+    .home .controls .vid-btn {
+      height: 2rem;
+      width: 2rem;
+      display: inline-block;
+      border-radius: 50%;
+      background: #fff;
+      cursor: pointer;
+      margin: 0 0.5rem;
+    }
+
+    .home .controls .vid-btn.active {
+      background: var(#85c1ee);
+    }
+
+    /* 
+
+
+/* media queries  */
+
+    @media (max-width: 1200px) {
+      html {
+        font-size: 55%;
+      }
+    }
+
+    @media (max-width: 991px) {
+      header {
+        padding: 2rem;
+      }
+
+      section {
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #menu-bar {
+        display: initial;
+      }
+
+      header .navbar {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        background: #333;
+        border-top: 0.1rem solid rgba(255, 255, 255, 0.7);
+        padding: 1rem 2rem;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
+
+      header .navbar.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      header .navbar a {
+        display: block;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        background: #222;
+      }
+    }
+
+    @media (max-width: 450px) {
+      html {
+        font-size: 50%;
+      }
+
+      .heading span {
+        font-size: 2.5rem;
+      }
+    }
+
+    .image-gallary {
+      width: 80%;
+      margin: 100px auto 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-gap: 30px;
+      margin-top: -3rem;
+    }
+    .image-gallary img {
+      width: 100%;
+      cursor: pointer;
+      height: 20rem;
+    }
+    .image-gallary img:hover {
+      transform: scale(0.8) rotate(-15deg);
+      border-radius: 20px;
+      box-shadow: 0 32px 75px rgba(68, 77, 136, 0.2);
+    }
+    .full-img {
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    .full-img img {
+      width: 90%;
+      max-width: 500px;
+    }
+    .full-img span {
+      position: absolute;
+      top: 5%;
+      right: 5%;
+      font-size: 30px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      color: #d9d9d9;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    .content1 {
+      position: relative;
+      margin: 130px auto;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .content1 .text {
+      /* font-size: 2.5rem; */
+      font-weight: 600;
+      color: #202020;
+    }
+    .content1 .p {
+      /* font-size: 2.1875rem; */
+      font-weight: 600;
+      color: #202020;
+    }
+    footer {
+      /* position: fixed; */
+      bottom: 0px;
+      width: 100%;
+      background: #111;
+    }
+    .fmain-content {
+      display: flex;
+    }
+    .fmain-content .box {
+      flex-basis: 50%;
+      padding: 10px 20px;
+    }
+    .box h2 {
+      /* font-size: 1.125rem; */
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .box .f_content {
+      margin: 20px 0 0 0;
+      position: relative;
+    }
+    .box .f_content:before {
+      position: absolute;
+      content: "";
+      top: -10px;
+      height: 2px;
+      width: 100%;
+      background: #1a1a1a;
+    }
+    .box .f_content:after {
+      position: absolute;
+      content: "";
+      height: 2px;
+      width: 15%;
+      background: #85c1ee;
+      top: -10px;
+    }
+    .left .f_content p {
+      text-align: justify;
+    }
+    .left .f_content .social {
+      margin: 20px 0 0 0;
+      display: flex;
+      gap: 2rem;
+    }
+    .left .f_content .social a {
+      padding: 0 2px;
+    }
+    .left .f_content .social a span {
+      height: 40px;
+      width: 40px;
+      background: #1a1a1a;
+      line-height: 40px;
+      text-align: center;
+      font-size: 18px;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    .left .f_content .social a span:hover {
+      background: #85c1ee;
+    }
+    .center .f_content .fas {
+      font-size: 1.4375rem;
+      background: #1a1a1a;
+      height: 45px;
+      width: 45px;
+      line-height: 45px;
+      text-align: center;
+      border-radius: 50%;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .center .f_content .fas:hover {
+      background: #85c1ee;
+    }
+    .center .f_content .text {
+      /* font-size: 1.0625rem; */
+      font-weight: 500;
+      padding-left: 10px;
+    }
+    .center .f_content .phone {
+      margin: 15px 0;
+    }
+    .right form .text {
+      /* font-size: 1.0625rem; */
+      margin-bottom: 2px;
+      color: #656565;
+    }
+    .right form .msg {
+      margin-top: 10px;
+    }
+    .right form input,
+    .right form textarea {
+      width: 100%;
+      /* font-size: 1.0625rem; */
+      background: #151515;
+      padding-left: 10px;
+      border: 1px solid #222222;
+    }
+    .right form input:focus,
+    .right form textarea:focus {
+      outline-color: #3498db;
+    }
+    .right form input {
+      height: 35px;
+    }
+    .right form .btn {
+      margin-top: 10px;
+    }
+    .right form .btn button {
+      height: 40px;
+      width: 100%;
+      border: none;
+      outline: none;
+      background: #85c1ee;
+      /* font-size: 1.0625rem; */
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .right form .btn button:hover {
+      background: #000;
+    }
+    .bottom center {
+      padding: 5px;
+      /* font-size: 0.9375rem; */
+      background: #151515;
+    }
+    .bottom center span {
+      color: #656565;
+    }
+    .bottom center a {
+      color: #85c1ee;
+      text-decoration: none;
+    }
+    .bottom center a:hover {
+      text-decoration: underline;
+    }
+    @media screen and (max-width: 900px) {
+      footer {
+        position: relative;
+        bottom: 0px;
+      }
+      .main-content {
+        flex-wrap: wrap;
+        flex-direction: column;
+      }
+      .main-content .box {
+        margin: 5px 0;
+      }
+    }
+  </style>
+  <body>
+    <!-- header section starts  -->
+
+    <header>
+      <div id="menu-bar" class="fas fa-bars"></div>
+
+      <img src="/images/logo_sola.png" alt="" />
+
+      <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="#gallery">Smart city</a>
+        <a href="#contact">E-Service</a>
+        <a href="#download">Downloads</a>
+        <a href="#Citizen_charter">Citizen charter</a>
+        <a href="#contact">Gallary</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="icons">
+        <i class="fas fa-search" id="search-btn"></i>
+        <i class="fas fa-user" id="login-btn"></i>
+      </div>
+    </header>
+
+    <!-- header section ends -->
+
+    <!-- home section starts  -->
+
+    <section class="home" id="home">
+      <div class="content">
+        <h3>Welcome To Solapur Muncipal Corporation</h3>
+        <p>
+          Maharashtra's one of the major city and Solapur District's
+          administrative headquarter
+        </p>
+        <a href="#" class="btn">Explore more</a>
+      </div>
+
+      <div class="controls">
+        <span class="vid-btn active" data-src="images/s2.mp4"></span>
+        <span class="vid-btn" data-src="images/s1.mp4"></span>
+        <span class="vid-btn" data-src="images/s3.mp4"></span>
+        <span class="vid-btn" data-src="images/s4.mp4"></span>
+        <span class="vid-btn" data-src="images/s5.mp4"></span>
+      </div>
+
+      <div class="video-container">
+        <video
+          src="images/s2.mp4"
+          id="video-slider"
+          loop
+          autoplay
+          muted
+        ></video>
+      </div>
+    </section>
+
+    <!-- home section ends -->
+
+    <section class="section features" id="features" aria-label="features">
+      <div class="container">
+        <p class="section-subtitle text-center">--Fealds--</p>
+        <h2 class="h2 section-title text-center">Facilites provided by us</h2>
+        <ul class="grid-list">
+          <li>
+            <div class="features-card">
+              <data class="card-number" value="01">01</data>
+
+              <h3 class="h3 card-title">Stratutory Document</h3>
+
+              <p class="card-text">
+                Nullam ullamcorper condimentum urna eu accumsan.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="features-card">
+              <data class="card-number" value="02">02</data>
+
+              <h3 class="h3 card-title">Complaint Registraion</h3>
+
+              <p class="card-text">
+                Nullam ullamcorper condimentum urna eu accumsan.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="features-card">
+              <data class="card-number" value="03">03</data>
+
+              <h3 class="h3 card-title">Property tax Payment</h3>
+
+              <p class="card-text">
+                Nullam ullamcorper condimentum urna eu accumsan.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="features-card">
+              <data class="card-number" value="04">04</data>
+
+              <h3 class="h3 card-title">Licence Service</h3>
+
+              <p class="card-text">
+                Nullam ullamcorper condimentum urna eu accumsan.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="features-card">
+              <data class="card-number" value="05">05</data>
+
+              <h3 class="h3 card-title">Departments</h3>
+
+              <p class="card-text">
+                Nullam ullamcorper condimentum urna eu accumsan.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="features-card">
+              <data class="card-number" value="06">06</data>
+
+              <h3 class="h3 card-title">Recrutment notice</h3>
+
+              <p class="card-text">
+                Nullam ullamcorper condimentum urna eu accumsan.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="full-img" id="fullimgbox">
+      <img src="gallary/img1.jpg" alt="" id="fullimg" />
+      <span onclick="closefullimg()">X</span>
+    </div>
+
+    <div class="image-gallary">
+      <img src="images/i1.jpeg" alt="" />
+      <img src="images/i2.jpeg" alt="" />
+      <img src="images/i3.jpeg" alt="" />
+      <img src="images/i4.jpeg" alt="" />
+      <img src="images/i5.jpeg" alt="" />
+      <img src="images/i6.jpeg" alt="" />
+      <img src="images/i1.jpeg" alt="" />
+      <img src="images/i2.jpeg" alt="" />
+    </div>
+
+
+
+    <footer>
+        <div class="fmain-content">
+          <div class="left box">
+            <h2>About us</h2>
+            <div class="f_content">
+              <p>text</p>
+              <div class="social">
+                <a href="https://www.facebook.com/SolapurSMC"><span class="fab fa-facebook-f"></span></a>
+                <a href="#"><span class="fab fa-twitter"></a>
+                <a href="#"><span class="fab fa-instagram"></span></a>
+                <a href="#"><span class="fab fa-youtube"></span></a>
+              </div>
+            </div>
+          </div>
+          <div class="center box">
+            <h2>Address</h2>
+            <div class="f_content">
+              <div class="place">
+                <span class="fas fa-map-marker-alt"></span>
+                <span class="text">Indrabhuwan, Ambedkar Chowk, Railway Line, Solapur, Maharashtra 413001</span>
+              </div>
+              <div class="phone">
+                <span class="fas fa-phone-alt"></span>
+                <span class="text">0217 273 5285</span>
+              </div>
+              <!-- <div class="email">
+                <span class="fas fa-envelope"></span>
+                <span class="text">abc@example.com</span>
+              </div> -->
+            </div>
+          </div>
+          <div class="right box">
+            <h2>Contact us</h2>
+            <div class="f_content">
+              <form action="#">
+                <div class="email">
+                  <div class="text">Email *</div>
+                  <input type="email" required>
+                </div>
+                <div class="msg">
+                  <div class="text">Message *</div>
+                  <textarea rows="2" cols="25" required></textarea>
+                </div>
+                <div class="btn">
+                  <button type="submit">Send</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          
+        </div>
+      </footer>
+
+    <script>
+      let videoBtn = document.querySelectorAll(".vid-btn");
+      videoBtn.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelector(".controls .active")
+            .classList.remove("active");
+          btn.classList.add("active");
+          let src = btn.getAttribute("data-src");
+          document.querySelector("#video-slider").src = src;
+        });
+      });
+
+      var fullimgbox = document.getElementById("fullimgbox");
+      var fullimg = document.getElementById("fullimg");
+
+      function openfullimg(pic) {
+        fullimgbox.style.display = "flex";
+        fullimg.src = pic;
+      }
+
+      function closefullimg() {
+        fullimgbox.style.display = "none";
+      }
+    </script>
+  </body>
+</html>
